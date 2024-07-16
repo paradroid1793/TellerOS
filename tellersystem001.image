@@ -1,0 +1,32 @@
+#include <iostream>
+#include <windows.h>
+#include <thread>
+
+int main() {
+    // Set text color to white
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    
+    // Display message
+    std::cout << "Tellersystem Alpha_0.0.1 Programmed By Samuel M. Seka" << std::endl;
+    
+    // Blinking '>' symbol
+    bool blink = true;
+    while (true) {
+        std::cout << (blink ? ">" : " ") << std::flush;
+        blink = !blink;
+        // Move cursor back to overwrite '>' symbol
+        std::cout << '\r' << std::flush;
+        
+        // Accept user input
+        std::string userInput;
+        std::getline(std::cin, userInput);
+        
+        // Process user input
+        if (userInput.empty()) {
+            std::cout << "Not Valid Input Command" << std::endl;
+        }
+    }
+    
+    return 0;
+}
